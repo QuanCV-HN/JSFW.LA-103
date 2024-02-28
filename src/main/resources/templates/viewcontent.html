@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{css/viewcontnent.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="header">
+        <div class="CMS">CMS</div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="fa-solid fa-user"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-btn">
+                <li><a class="dropdown-item" th:href="@{/edit}"><i class="fa-solid fa-user"></i> Profile</a></li>
+                <li><a class="dropdown-item" th:href="@{/login}"><i class="fa-solid fa-right-from-bracket"></i>Logout</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <!-- .................................................................................... -->
+
+    <div class="body">
+        <div class="body-left">
+            <div class="body-search">
+                <div class="nav-search pl-5">
+                    <input class="input-search" type="text" placeholder=" Search...">
+                    <a class="icon-search" href=""><i class="fa-solid fa-magnifying-glass"></i></a>
+                </div>
+            </div>
+            <div class="left-content pl-5 a-selected">
+                <a th:href="@{/viewcontent}" class="a-fontcontent">
+                    <i class="fa-solid fa-calendar-days fontsize-1"></i>
+                    <div class="font-content">View contents</div>
+                </a>
+            </div>
+            <div class="left-content pl-5 ">
+                <a th:href="@{/addcontent}" class="a-fontcontent">
+                    <i class="fa-regular fa-pen-to-square fontsize-1"></i>
+                    <div class="font-content">Font content</div>
+                </a>
+            </div>
+        </div>
+        <div class="body-right">
+            <div class="body-right">
+                <div class="body-right-text">View content</div>
+                <div class="right-line"></div>
+                <div class="body-right-form">
+                    <div class="form-content">View Content List</div>
+                    <div class="table-content">
+                      <table>
+                            <thead>
+                                <tr>
+                                    <th class="col1">#</th>
+                                    <th class="col2">Title</th>
+                                    <th class="col3">Brief</th>
+                                    <th class="col4">Created Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="item">
+
+                                <tr class="row-body" th:each="c,iterStat : ${page.content}">
+                                    <td class="col1"  th:text="${iterStat.count}"></td>
+                                    <td class="col2" th:text="${c.title}"></td>
+                                    <td class="col3" th:text="${c.brief}"></td>
+                                    <td class="col4" th:text="${c.createDate}"></td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li th:if="${page.hasPrevious()}" class="page-item ">
+                                        <a class="page-link" th:href="@{/viewcontent(pageNumber=${page.getNumber()})}" tabindex="-1">Previous</a>
+                                    </li>
+                                    <li th:each="n : ${pageNumList}" class="page-item">
+                                        <a th:if="${n == page.getNumber()+1}" class="page-link active" th:href="@{/viewcontent(pageNumber=${n})}" th:text="${n}"></a>
+                                        <a th:if="${n != page.getNumber()+1}" class="page-link " th:href="@{/viewcontent(pageNumber=${n})}" th:text="${n}"></a>
+                                    </li>
+
+                                    <li  th:if="${page.hasNext()}" class="page-item">
+                                        <a class="page-link" th:href="@{/viewcontent(pageNumber=${page.getNumber() +2})}">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script th:src="@{/js/viewcontent.js}"></script>
+</body>
+
+</html>

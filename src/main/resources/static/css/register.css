@@ -1,0 +1,39 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+/* form login */
+#login-form{
+    margin-top: 100px !important;
+    width: 400px;
+    margin: auto;
+    border: 0.1px solid gray;
+}
+.login-text{
+    padding-left: 15px;
+    background-color: rgb(167, 163, 163);
+    height: 40px;
+    padding-top: 8px;
+}
+.login-content{
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    margin-right: 15px;
+}
+.form-check{
+    margin-top: 15px;
+}
+.btn-login{
+    display: inline-block;
+    width: 368px;
+    height: 50px;
+    margin-bottom: 25px;
+    background-color: rgb(42, 163, 42) !important;
+
+}
